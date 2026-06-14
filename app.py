@@ -14,7 +14,16 @@ with open("models/tokenizer.pkl", "rb") as f:
     tokenizer = pickle.load(f)
 
 max_length = 50
+import nltk
 
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
+from nltk.corpus import stopwords
+
+stop_words = set(stopwords.words('english'))
 stop_words = set(stopwords.words('english'))
 
 def clean_text(text):
